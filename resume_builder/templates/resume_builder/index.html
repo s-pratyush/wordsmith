@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Home - WORDSMITH</title>
+    {% load static%}
+    <link rel="stylesheet" href="{% static 'resume_builder/assets/bootstrap/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{% static 'resume_builder/assets/css/styles.min.css' %}">
+</head>
+
+<body id="page-top">
+    <section id="form_modal" class="form-modal">
+        <div id="form_container">
+            <button class="close-btn" id="close_btn" onclick="close_form()"><i class="fa fa-times fa-2x aria-hidden="true"></i>
+            </button>
+            {% load static%}
+<iframe src="{% static 'resume_builder/form.html' %}" style="border:none;height:100%;width:100%; border-radius: 25px;"></iframe>
+ </div>
+    </section>
+    <nav  class="navbar navbar-light navbar-expand-lg fixed-top bg-secondary text-uppercase" id="mainNav">
+        <div class="container"><a class="navbar-brand js-scroll-trigger" href="#page-top">WORDSMITH</a><button data-toggle="collapse" data-target="#navbarResponsive" class="navbar-toggler navbar-toggler-right text-uppercase bg-primary text-white rounded" aria-controls="navbarResponsive"
+                aria-expanded="false" aria-label="Toggle navigation"><i class="fa fa-bars"></i></button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="nav navbar-nav ml-auto">
+                    <li class="nav-item mx-0 mx-lg-1" role="presentation"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#portfolio">Services</a></li>
+                    <li class="nav-item mx-0 mx-lg-1" role="presentation"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#about">About</a></li>
+                    <li class="nav-item mx-0 mx-lg-1" role="presentation"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#contact">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <header class="masthead bg-primary text-white text-center">
+        <div class="container"><img class="img-fluid d-block mx-auto mb-5" src="{% static 'resume_builder/assets/img/profile.png' %}">
+            <h1>Hey ! I am Wordsmith</h1>
+            <hr class="star-light">
+            <h2 class="font-weight-light mb-0">I CAN DESIGN A RESUME AND C .V.&nbsp; FOR YOU .</h2>
+        </div>
+    </header>
+    <section id="portfolio" class="portfolio">
+        <div class="container">
+            <h2 class="text-uppercase text-center text-secondary">WHAT YOU WANT ME TO DO?</h2>
+            <hr class="star-dark mb-5">
+            <div class="row">
+                <div class="col-md-6 col-lg-4">
+                    <a class="d-block mx-auto portfolio-item" data-toggle="modal" href="#portfolio-modal-1">
+                        <div class="d-flex portfolio-item-caption position-absolute h-100 w-100">
+                            <div class="my-auto portfolio-item-caption-content w-100 text-center text-white"><button class="add-btn"><i class="fa fa-plus fa-3x"></i></button></div>
+                        </div><img class="img-fluid" src="{% static 'resume_builder/assets/img/portfolio/cv.png' %}"></a>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <a class="d-block mx-auto portfolio-item" data-toggle="modal" href="#portfolio-modal-2">
+                        <div class="d-flex portfolio-item-caption position-absolute h-100 w-100">
+                            <div class="my-auto portfolio-item-caption-content w-100 text-center text-white"><button class="add-btn" onclick="open_form()"><i class="fa fa-plus fa-3x"></i></button></div>
+                        </div><img class="img-fluid"  src="{% static 'resume_builder/assets/img/portfolio/resume.jpg' %}"></a>
+                </div>
+                <div class="col-md-6 col-lg-4"><a class="d-block mx-auto portfolio-item" data-toggle="modal" href="#portfolio-modal-6"></a></div>
+            </div>
+        </div>
+    </section>
+    <section id="about" class="bg-primary text-white mb-0">
+        <div class="container">
+            <h2 class="text-uppercase text-center text-white">About</h2>
+            <hr class="star-light mb-5">
+            <div class="row">
+                <div class="col-lg-4 ml-auto">
+                    <p class="lead">Forget spending hours formatting your resume, or choosing complimentary fonts for your cover letter. Creating a resume online with Wordsmith is free , this resume builder will give you a sleek and attractive resume, without the fuss.</p>
+                </div>
+                <div class="col-lg-4 mr-auto">
+                    <p class="lead">Let us help you with the design, so you can focus on promoting your skills and landing your dream job.</p>
+                </div>
+            </div>
+            <div class="text-center mt-4"><a class="btn btn-outline-light btn-xl" role="button" href="#"><i class="fa fa-tags"></i><span> Let's Start!</span></a></div>
+        </div>
+    </section>
+    <section id="contact">
+        <div class="container">
+            <h2 class="text-uppercase text-center text-secondary mb-0">Contact Me</h2>
+            <hr class="star-dark mb-5">
+            <div class="row">
+                <div class="col-lg-8 mx-auto">
+                    <form action="" method="POST" id="contactForm" name="sentMessage" >
+                    {% csrf_token %}
+                        <div class="control-group">
+                            <div class="form-group floating-label-form-group controls mb-0 pb-2"><label>Name</label><input class="form-control" type="text" id="name" required="" placeholder="Name" name="name"><small class="form-text text-danger help-block"></small></div>
+                        </div>
+                        <div class="control-group">
+                            <div class="form-group floating-label-form-group controls mb-0 pb-2"><label>Email Address</label><input class="form-control" type="email" id="email" name="email" required="" placeholder="Email Address"><small class="form-text text-danger help-block"></small></div>
+                        </div>
+                        <div class="control-group">
+                            <div class="form-group floating-label-form-group controls mb-0 pb-2"><label>Phone Number</label><input class="form-control" type="tel" id="phone" name="phone_no" required="" placeholder="Phone Number"><small class="form-text text-danger help-block"></small></div>
+                        </div>
+                        <div class="control-group">
+                            <div class="form-group floating-label-form-group controls mb-5 pb-2"><textarea class="form-control" id="message" required="" placeholder="Message" name="message" rows="5"></textarea><small class="form-text text-danger help-block"></small></div>
+                        </div>
+                        <div id="success"></div>
+                        <div class="form-group"><input class="btn btn-primary btn-xl" id="sendMessageButton" type="submit" value="Submit"/>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <footer class="footer text-center" style="background-color: rgb(44,62,80);">
+        <!-- Start: Footer with social media icons -->
+        <footer id="footerpad">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 col-lg-8 mx-auto">
+                        <ul class="list-inline text-center">
+                            <li class="list-inline-item"><a href="#"><span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x"></i><i class="fa fa-facebook fa-stack-1x fa-inverse"></i></span></a></li>
+                            <li class="list-inline-item"><a href="#"><span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x"></i><i class="fa fa-google fa-stack-1x fa-inverse"></i></span></a></li>
+                            <li class="list-inline-item"><a href="#"><span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x"></i><i class="fa fa-github fa-stack-1x fa-inverse"></i></span></a></li>
+                            <li class="list-inline-item"><a href="#"><span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x"></i><i class="fa fa-linkedin fa-stack-1x fa-inverse"></i></span></a></li>
+                        </ul>
+                        <p class="copyright text-muted text-center" style="color: rgb(250,251,252);background-color: rgb(44,62,80);filter: brightness(100%);">Copyright © Wordsmith&nbsp; 2020 | Developed&nbsp; By Pratyush Saxena</p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- End: Footer with social media icons -->
+        <!-- Start: Footer with social media icons -->
+        <footer id="footerpad-1"></footer>
+        <!-- End: Footer with social media icons -->
+    </footer>
+   
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+    <script src="https://res.cloudinary.com/dn1wzghh2/raw/upload/v1598938506/assets_for_wordsmith/script.min_lgevxh.js"></script>
+    <script src="https://res.cloudinary.com/dn1wzghh2/raw/upload/v1599120655/assets_for_wordsmith/myscript_a3arbe.js"></script>
+</body>
+
+</html>

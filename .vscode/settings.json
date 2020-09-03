@@ -1,0 +1,28 @@
+{
+    "sqltools.connections": [
+        {
+            "database": "${workspaceFolder:wordsmith}/db.sqlite3",
+            "driver": "SQLite",
+            "name": "my_db",
+            "previewLimit": 50
+        },
+        {
+            "database": "${workspaceFolder:wordsmith}/db.sqlite3",
+            "driver": "SQLite",
+            "name": "my_db",
+            "previewLimit": 50
+        },
+        {
+            "database": "${workspaceFolder:wordsmith}/db.sqlite3",
+            "driver": "SQLite",
+            "name": "my_db",
+            "previewLimit": 50
+        },
+        {
+            "database": "${workspaceFolder:wordsmith}/db.sqlite3",
+            "driver": "SQLite",
+            "name": "my_contacts",
+            "previewLimit": 50
+        }
+    ]
+}
