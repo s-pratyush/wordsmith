@@ -43,6 +43,7 @@ body{text-align: center;}
   background-color: transparent;
   border: none;
 }
+.close-btn{color: #20c997;}
 .add-btn:focus,.close-btn{    
     border: none;
     outline: none;
@@ -60,5 +61,5 @@ body{text-align: center;}
     margin-top: 10px;
 }
 #close_btn:hover{
-    color: #20c997;
+    color: red;
 }

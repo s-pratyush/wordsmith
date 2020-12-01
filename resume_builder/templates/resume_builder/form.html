@@ -23,7 +23,8 @@
     <section>
         <h1 class="text-center text-capitalize" style="border-style: none;">Resume form</h1>
         <div class="container">
-            <form id="application-form">
+            <form id="application-form" method="post">
+            {% csrf_token %}
                 <div class="form-group">
                     <div class="form-row">
                         <div class="col">
@@ -97,6 +98,7 @@
 </div>
                     <!-- End: Bootstrap Image Uploader -->
                 </div>
+                <input type="submit" value="Submit">
                 <div class="form-group justify-content-center d-flex">
                     <div id="submit-btn">
                         <div class="form-row"><button class="btn btn-primary btn-light m-0 rounded-pill px-4" type="button" style="min-width: 250px;background-color: #20c997;color:white;border: none;" action method="POST" target="hidden_iframe"><b>Submit</b></button></div>
