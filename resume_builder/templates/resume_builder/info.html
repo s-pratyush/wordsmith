@@ -579,6 +579,7 @@
                 <div id="form-content-2" class="multisteps-form__content">
                   <div id="input-grp-single" class="form-row mt-4">
                     <div class="col-12">
+                    <input type="text" name="rich_text" id="richtext" style="display: none;">
                       <div id="editor">
                         <p>Add Honors and Achievements</p>
                       </div>
@@ -598,6 +599,7 @@
                         type="text"
                         placeholder="Skills"
                         id="tag-input1"
+                        name="skills"
                       />
                       <script src="{% static '/resume_builder/tag-input.js'%}"></script>
                       <script>
@@ -647,6 +649,16 @@
                         } else {
                           sendbtn.disabled = true;
                         }
+                        var data=document.getElementsByClassName('ck-blurred ck ck-content ck-editor__editable ck-rounded-corners ck-editor__editable_inline')[0].innerHTML;
+                        document.getElementById('richtext').value=data;
+                        var skills=document.getElementsByClassName('tag')
+                        var skillset=""
+                        for(var skill of skills){
+                        skill=skill.innerHTML.split("<")[0]
+                        skillset=skillset+","+skill
+                        }
+                        document.getElementById('tag-input1').value=skillset
+                        console.log(document.getElementById('tag-input1').value)
                       };
                     </script>
                   </div>

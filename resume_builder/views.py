@@ -31,10 +31,11 @@ def form(request):
         data['Addr_2']=request.POST.get('add_2')
         data['Country']=request.POST.get('country')
         data['Zipcode']=request.POST.get('zipcode')
+        data['Other']=request.POST.get('richtext')
+        data['skills']=request.POST.get('skills')
         print(data)
     return render(request,'resume_builder/info.html')
 
 def cv_design(request):
     return render(request,'resume_builder/cv_design.html')    
-
 
