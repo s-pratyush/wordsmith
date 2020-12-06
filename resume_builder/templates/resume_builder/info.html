@@ -579,17 +579,10 @@
                 <div id="form-content-2" class="multisteps-form__content">
                   <div id="input-grp-single" class="form-row mt-4">
                     <div class="col-12">
-                    <input type="text" name="rich_text" id="richtext" style="display: none;">
-                      <div id="editor">
-                        <p>Add Honors and Achievements</p>
-                      </div>
-                      <script>
-                        ClassicEditor.create(
-                          document.querySelector("#editor")
-                        ).catch((error) => {
-                          console.error(error);
-                        });
-                      </script>
+                      <input class="form-control multisteps-form__input"
+                      type="text"
+                      placeholder="Education, Ex. ABC Institue , XYZ qualificatin ,"
+                      name="Education">
                     </div>
                   </div>
                   <div id="input-grp-single-1" class="form-row mt-4">
@@ -639,28 +632,6 @@
                       disabled="disabled"
                       id="submit_btn"
                     />
-                    <script>
-                      var checker = document.getElementById("checkbox");
-                      var sendbtn = document.getElementById("submit_btn");
-                      // when unchecked or checked, run the function
-                      checker.onchange = function () {
-                        if (this.checked) {
-                          sendbtn.disabled = false;
-                        } else {
-                          sendbtn.disabled = true;
-                        }
-                        var data=document.getElementsByClassName('ck-blurred ck ck-content ck-editor__editable ck-rounded-corners ck-editor__editable_inline')[0].innerHTML;
-                        document.getElementById('richtext').value=data;
-                        var skills=document.getElementsByClassName('tag')
-                        var skillset=""
-                        for(var skill of skills){
-                        skill=skill.innerHTML.split("<")[0]
-                        skillset=skillset+","+skill
-                        }
-                        document.getElementById('tag-input1').value=skillset
-                        console.log(document.getElementById('tag-input1').value)
-                      };
-                    </script>
                   </div>
                 </div>
               </div>
@@ -672,6 +643,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
     <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script src="{% static 'resume_builder/myscript.js'%}"></script>
     <script src="{% static 'resume_builder/Multi-step-form.js'%}"></script>
     <script>
       $(document).ready(function () {
