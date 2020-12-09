@@ -21,7 +21,6 @@ data={}
 data['F_name']="Pratyush"
 data['L_name']="Saxena"
 data['Dob']="12/09/2001"
-data['Objective']="<pre><p>Hello , this one is dummy text</p></pre>"
 data['Image']="This is image"
 data['Email']="saxena18prats@gmail.com"
 data['Tel_no']="9876765454"
@@ -44,13 +43,20 @@ def form(request):
         data['Addr_2']=request.POST.get('add_2')
         data['Country']=request.POST.get('country')
         data['Zipcode']=request.POST.get('zipcode')
-        data['Other']=request.POST.get('rich_text')
+        edu=request.POST.getlist('Education')
+        edu_list=[]
+        for e in edu:
+            edu_list.append(e.split(','))
+        data['Education']=edu_list
+        exp=request.POST.getlist('Experiance')
+        exp_list=[]
+        for e in exp:
+            exp_list.append(e.split(','))
+        data['Experiance']=exp_list
+        print(edu_list)
         skillset=[]
         temp=True
         for s in request.POST.get('skills').split(','):
-            if temp:
-                temp=False
-                continue
             skillset.append(s)
         data['skills']=skillset
     return render(request,'resume_builder/info.html')

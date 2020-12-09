@@ -195,7 +195,7 @@
                         class="form-control multisteps-form__input"
                         type="email"
                         placeholder="Email"
-                        name="mail"
+                        name="email"
                       />
                     </div>
                     <div class="col-12 col-sm-6 mt-4 mt-sm-0">
@@ -578,15 +578,71 @@
                 </h3>
                 <div id="form-content-2" class="multisteps-form__content">
                   <div id="input-grp-single" class="form-row mt-4">
-                    <div class="col-12">
+                    <div id="edu_input_cont" style="width: 100%;padding:0;">
+                    <div class="col-12" id="edu_input" style="margin-bottom: 10px;padding: 0;">
                       <input class="form-control multisteps-form__input"
                       type="text"
-                      placeholder="Education, Ex. ABC Institue , XYZ qualificatin ,"
-                      name="Education">
+                      placeholder="Education, Ex. ABC Institue, XYZ qualificatin, scored 91%"
+                      name="Education"
+                      style="height: 50px;"
+                      >
+                    </div>
+                    </div>
+                    <div class="col-12" id="edu_input">
+                      <button
+                      class="btn btn btn-primary"
+                      type="button"
+                      title="add"
+                      style="margin-top: 10px ;position: relative;float:right;"
+                      id="add_btn"
+                    >
+                      Add
+                    </button>
+                    <button
+                      class="btn btn btn-primary"
+                      type="button"
+                      title="add"
+                      style="margin-top: 10px ;position: relative;float:left;"
+                      id="add_btn"
+                    >
+                      Remove
+                    </button>
+                    </div>
+                  </div>
+                  <div id="input-grp-single" class="form-row mt-4">
+                    <div id="exp_input_cont" style="width: 100%;padding:0;">
+                    <div class="col-12" id="exp_input" style="margin-bottom: 10px;padding: 0;">
+                      <input class="form-control multisteps-form__input"
+                      type="text"
+                      placeholder="Experiance, Ex. Google LLC , SDE Intern , 2013-19 , Learned kickstarting tecnos... "
+                      name="Experiance"
+                      style="height: 50px;"
+                      >
+                    </div>
+                    </div>
+                    <div class="col-12" id="edu_input">
+                      <button
+                      class="btn btn btn-primary"
+                      type="button"
+                      title="add"
+                      style="margin-top: 10px ;position: relative;float:right;"
+                      id="add_btn_exp"
+                    >
+                      Add
+                    </button>
+                    <button
+                      class="btn btn btn-primary"
+                      type="button"
+                      title="add"
+                      style="margin-top: 10px ;position: relative;float:left;"
+                      id="remove_btn_exp"
+                    >
+                      Remove
+                    </button>
                     </div>
                   </div>
                   <div id="input-grp-single-1" class="form-row mt-4">
-                    <div class="col-12">
+                    <div class="col-12" >
                       <input
                         class="form-control multisteps-form__input"
                         type="text"
@@ -653,6 +709,21 @@
           geekss = url;
           document.getElementById("file_url").innerHTML = geekss;
         });
+        $('#add_btn').click(function (){
+          var $input=$('#edu_input').clone();
+          $('#edu_input_cont').append($input);
+        });
+        $('#add_btn_exp').click(function (){
+          var $input=$('#exp_input').clone();
+          $('#exp_input_cont').append($input);
+        });
+        $('#remove_btn_exp').click(function (){
+          var $input=$('#exp_input').clone();
+          $('#exp_input_cont').append($input);
+        });
+        $('#submit_btn').click(function (){
+          window.open("{% url  %}")
+        })
       });
     </script>
   </body>
