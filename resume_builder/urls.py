@@ -1,11 +1,12 @@
 from django.urls import path
+from django.conf.urls import url
 from django.views.generic import TemplateView
 
 from . import views
-app_name = 'wordsmith'
+app_name = 'resume_builder'
 urlpatterns = [
     path('', views.index, name='index'),
     path('cv_form/',views.cv_design,name='cv_design'),
     path('form/',views.form,name='form'),
-    path('my_resume/',views.resume,name='resume'),
+    url('resume/',views.resume,name='resume'),
 ]   
