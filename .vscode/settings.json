@@ -24,5 +24,6 @@
             "name": "my_contacts",
             "previewLimit": 50
         }
-    ]
+    ],
+    "python.pythonPath": "/bin/python3"
 }
