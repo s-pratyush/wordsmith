@@ -7,6 +7,7 @@ checker.onchange = function () {
     } else {
         sendbtn.disabled = true;
     }
+    data = document.getElementsByClassName('ck-blurred ck ck-content ck-editor__editable ck-rounded-corners ck-editor__editable_inline')[0].innerHTML;
     var skills = document.getElementsByClassName('tag')
     var skillset = ""
     for (var skill of skills) {

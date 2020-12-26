@@ -1,7 +1,9 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.template import loader
-from .models import Contacts
+from .models import Contacts 
+from .models import data 
+import json
 
 
 
@@ -55,10 +57,10 @@ def form(request):
         data['Experiance']=exp_list
         print(edu_list)
         skillset=[]
-        temp=True
         for s in request.POST.get('skills').split(','):
             skillset.append(s)
         data['skills']=skillset
+        return render(request,'resume_builder/srt-resume.html',{'data':data})
     return render(request,'resume_builder/info.html')
 
 def cv_design(request):
