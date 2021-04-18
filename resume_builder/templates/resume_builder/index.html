@@ -19,7 +19,11 @@
             <button class="close-btn" id="close_btn" onclick="close_form()"><i class="fa fa-times fa-2x" aria-hidden="true"></i>
             </button>
             {% load static%}
-<iframe src="form" style="border:none;height:75%;width:100%; border-radius: 25px;"></iframe>
+<iframe 
+
+src="form" 
+
+style="border:none;height:75%;width:100%; border-radius: 25px;"></iframe>
  </div>
     </section>
     <nav  class="navbar navbar-light navbar-expand-lg fixed-top bg-secondary text-uppercase" id="mainNav">
@@ -32,7 +36,13 @@
                     <li class="nav-item mx-0 mx-lg-1" role="presentation"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#contact">Contact</a></li>
                 </ul>
             </div>
-        <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="{% url 'signup' %}"><img src="https://img.icons8.com/ios-glyphs/45/ffffff/test-account.png"/></a>
+        <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" 
+        {% if user.is_authenticated %}
+        href={% url 'myprofile' %}
+        {% else %}
+        href={% url 'login' %}
+        {% endif %}
+        ><img src="https://img.icons8.com/ios-glyphs/45/ffffff/test-account.png"/></a>
         </div>
     </nav>
     <header class="masthead bg-primary text-white text-center">
@@ -56,7 +66,16 @@
                 <div class="col-md-6 col-lg-4">
                     <a class="d-block mx-auto portfolio-item" data-toggle="modal" href="#portfolio-modal-2">
                         <div class="d-flex portfolio-item-caption position-absolute h-100 w-100">
-                            <div class="my-auto portfolio-item-caption-content w-100 text-center text-white"><button class="add-btn" onclick="open_form()"><i class="fa fa-plus fa-3x"></i></button></div>
+                            <div class="my-auto portfolio-item-caption-content w-100 text-center text-white">
+                            {% if user.is_authenticated %}
+                            <button class="add-btn" onclick="open_form()">
+                            <i class="fa fa-plus fa-3x"></i>
+                            </button>
+                            {% else %}
+                            <button class="add-btn" onclick="open_login()">
+                            <i class="fa fa-plus fa-3x"></i>
+                            {% endif %}
+                            </div>
                         </div><img class="img-fluid"  src="{% static 'resume_builder/assets/img/portfolio/resume.jpg' %}"></a>
                 </div>
                 <div class="col-md-6 col-lg-4"><a class="d-block mx-auto portfolio-item" data-toggle="modal" href="#portfolio-modal-6"></a></div>
@@ -136,6 +155,10 @@
     <script src="https://res.cloudinary.com/dn1wzghh2/raw/upload/v1598938506/assets_for_wordsmith/script.min_lgevxh.js"></script>
     <script src="https://res.cloudinary.com/dn1wzghh2/raw/upload/v1599120655/assets_for_wordsmith/myscript_a3arbe.js"></script>
     <script>
+    var open_login=function(){
+        window.location = {% url 'login' %}   
+    }
+    </script>
 </body>
 
 </html>
