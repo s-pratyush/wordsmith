@@ -6,9 +6,9 @@ class Contacts(models.Model):
     mobile_no=models.IntegerField()
     message=models.CharField(max_length=250)
     def __str__(self):
-        return self.name
+        return self.email
 
-class data(models.Model):
+class UserData(models.Model):
     F_name=models.CharField(max_length=100)
     L_name=models.CharField(max_length=100)
     Dob=models.DateField()
@@ -23,6 +23,8 @@ class data(models.Model):
     skills=jsonfield.JSONField(null=True)
     edu=jsonfield.JSONField(null=True)
     exp=jsonfield.JSONField(null=True)
+    def __str__(self):
+        return self.Email
 
 
 

@@ -1,0 +1,8 @@
+<form action="" method="post" id="" name="">
+{% csrf_token %}
+email : <input type="email" name="mail" id="email_id"> <br><br>
+<input type="submit" value='Reset password'>
+</form>
+{% if status %}
+Email sent for password reset !
+{% endif %}

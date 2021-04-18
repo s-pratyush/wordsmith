@@ -17,8 +17,10 @@ from django.contrib import admin
 from django.urls import include, path
 from django.conf import settings
 from django.conf.urls.static import static
-
+from resume_builder import views as v
 urlpatterns = [
     path('', include('resume_builder.urls')),
     path('admin/', admin.site.urls),
+    path('logout/',v.logout,name='logout'),
+    path('forgotpass',v.forgotpass,name='forgotpass'),
 ]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

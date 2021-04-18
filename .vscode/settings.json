@@ -25,6 +25,7 @@
             "previewLimit": 50
         }
     ],
-    "python.pythonPath": "/bin/python3",
-    "git.ignoreLimitWarning": true
+    "python.pythonPath": "C:\\Users\\acer\\AppData\\Local\\Programs\\Python\\Python39\\python.exe",
+    "git.ignoreLimitWarning": true,
+    "python.formatting.provider": "black"
 }

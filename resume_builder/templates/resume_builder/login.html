@@ -1,0 +1,14 @@
+{% if username %}
+hello {{username}}
+<a href="{% url 'logout' %}">Logut</a>
+{% else %}
+login
+{% endif %}
+<form action="" method="post" id="loginpform" name="login">
+{% csrf_token %}
+email : <input type="text" name="username" id="email_id"> <br><br>
+pass : <input type="password" name="pass" id="password">
+<input type="submit" value='Submit'>
+</form>
+<br><br>
+<a href="{% url "forgotpass" %}">forgot password?</a>
