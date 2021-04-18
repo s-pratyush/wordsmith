@@ -21,6 +21,10 @@ from resume_builder import views as v
 urlpatterns = [
     path('', include('resume_builder.urls')),
     path('admin/', admin.site.urls),
+    path('Home',v.index,name='home'),
     path('logout/',v.logout,name='logout'),
+    path('login/',v.log_in,name='login'),
     path('forgotpass',v.forgotpass,name='forgotpass'),
+    path('signup',v.signup,name='signup'),
+    path('myprofile',v.myprofile,name="myprofile")
 ]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

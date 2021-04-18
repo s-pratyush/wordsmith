@@ -1,3 +1,4 @@
+<!--
 <form action="" method="post" id="" name="">
 {% csrf_token %}
 email : <input type="email" name="mail" id="email_id"> <br><br>
@@ -6,3 +7,104 @@ email : <input type="email" name="mail" id="email_id"> <br><br>
 {% if status %}
 Email sent for password reset !
 {% endif %}
+-->
+<!--{% if username %}
+hello {{username}}
+<a href="{% url 'logout' %}">Logut</a>
+{% else %}
+login
+{% endif %}
+<form action="" method="post" id="loginpform" name="login">
+{% csrf_token %}
+email : <input type="text" name="username" id="email_id"> <br><br>
+pass : <input type="password" name="pass" id="password">
+<input type="submit" value='Submit'>
+</form>
+<br><br>
+<a href="{% url "forgotpass" %}">forgot password?</a>
+-->
+<!DOCTYPE html>
+<html>
+    {% load static%}
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Signup</title>
+    <link rel="stylesheet" href="{% static 'resume_builder/assets/bootstrap/css/bootstrap.min.css'%}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{% static 'resume_builder/assets/css/Pretty-Registration-Form.css'%}">
+    <link rel="stylesheet" href="{% static 'resume_builder/assets/css/Registration-Form-with-Photo.css'%}">
+</head>
+
+<body id="page-top">
+    <nav class="navbar navbar-light navbar-expand-lg fixed-top bg-secondary text-uppercase" id="mainNav">
+        <div class="container"><a class="navbar-brand js-scroll-trigger" href="{% url 'home'%}">WORDSMITH</a><button data-toggle="collapse" data-target="#navbarResponsive" class="navbar-toggler text-white bg-primary navbar-toggler-right text-uppercase rounded" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><i class="fa fa-bars"></i></button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="{% url 'home' %}">HOME</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <section class="text-white bg-primary mb-0" id="about">
+        <div class="container" style="margin-top: 50px;">
+            <div class="row register-form">
+                <div class="col-md-8 offset-md-2" style="border-radius: 100px;">
+                    <form action="" method="post" class="custom-form" style="background: rgb(44,62,80);margin-top: 0;box-shadow: 2.5px 2.5px 4px rgb(44,62,80);">
+                        {% csrf_token %}
+                        <h1 style="color: rgb(245,245,245);">Reset Password</h1>
+                        <div class="form-row form-group">
+                            <div class="col-sm-4 label-column"><label class="col-form-label" for="name-input-field" style="color: rgb(245,246,247);font-size: 18px;">Email</label></div>
+                            <div class="col-sm-6 input-column"><input class="form-control" type="email" name="mail"  style="filter: brightness(106%);border-radius: 2.5px;"></div>
+                        </div>
+                        
+                        <div class="form-check"><label class="form-check-label" for="formCheck-1" style="margin-top: 2.5px;color:red;">{% if status %}{{status}}{% endif %}</label></div>
+                        <a  class="btn btn-outline-light btn-xl" id="submit_btn" role="button" href="#" style="margin-top: 30px"><span>Reset Password</span></a><br><br>
+                         
+                    </form>
+                </div>
+            </div>
+            <div class="text-center mt-4"></div>
+        </div>
+    </section>
+     <footer class="footer text-center" style="background-color: rgb(44,62,80);">
+        <!-- Start: Footer with social media icons -->
+        <footer id="footerpad">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 col-lg-8 mx-auto">
+                        <ul class="list-inline text-center">
+                            <li class="list-inline-item"><a href="#"><span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x"></i><i class="fa fa-facebook fa-stack-1x fa-inverse"></i></span></a></li>
+                            <li class="list-inline-item"><a href="#"><span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x"></i><i class="fa fa-google fa-stack-1x fa-inverse"></i></span></a></li>
+                            <li class="list-inline-item"><a href="#"><span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x"></i><i class="fa fa-github fa-stack-1x fa-inverse"></i></span></a></li>
+                            <li class="list-inline-item"><a href="#"><span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x"></i><i class="fa fa-linkedin fa-stack-1x fa-inverse"></i></span></a></li>
+                        </ul>
+                        <p class="copyright text-muted text-center" style="color: rgb(250,251,252);background-color: rgb(44,62,80);filter: brightness(100%);">Copyright © Wordsmith&nbsp; 2020 | Developed&nbsp; By Pratyush Saxena</p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- End: Footer with social media icons -->
+        <!-- Start: Footer with social media icons -->
+       
+   
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+    <script src="{% static 'resume_builder/assets/js/freelancer.js'%}"></script>
+    <script>
+        $(document).ready(function(){
+   $(document).on("click","#submit_btn",function(){
+     var form = $(this).closest("form");
+     //console.log(form);
+     form.submit();
+   });
+});
+
+
+    </script>
+</body>
+
+</html>

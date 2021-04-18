@@ -4,7 +4,7 @@ from django.template import loader
 from .models import Contacts
 from .models import UserData
 from django.contrib.auth.models import User
-from django.contrib.auth import authenticate, login, logout as django_logout
+from django.contrib.auth import authenticate, login as django_login, logout as django_logout
 import json
 
 
@@ -35,10 +35,17 @@ def signup(request):
         )
         user.save()
         print("hello done !")
-    return render(request, "resume_builder/signup.html")
+        return render(request, "resume_builder/login.html")
+    return render(request, "resume_builder/sign_up.html")
 
 
-def login(request):
+def log_in(request):
+    if request.user.is_authenticated:
+        print("IS AUTHENTICATED")
+        username=request.user.username
+        return render(request,"resume_builder/myprofile.html",{"username":username})
+    else:
+        print("sorry")
     if request.method == "POST":
         user = authenticate(
             username=request.POST.get("username"), password=request.POST.get("pass")
@@ -46,7 +53,9 @@ def login(request):
         if user is not None:
             print("hurray logedd in :) \n")
             username = user.username
-            return render(request, "resume_builder/login.html", {"username": username})
+            django_login(request,user)
+            username=request.user.username
+            return render(request,"resume_builder/myprofile.html",{"username":username})
         else:
             print("Paradon unable to login :( ")
     return render(request, "resume_builder/login.html")
@@ -54,12 +63,16 @@ def login(request):
 
 def logout(request):
     django_logout(request)
-    return HttpResponse("you have been logged out")
+    return  log_in(request)
+
+def myprofile(request):
+    username=request.user.username
+    return render(request,"resume_builder/myprofile.html",{"username":username})
 
 
 def forgotpass(request):
+    status=""
     if request.method == "POST":
-        forgot_pass_data = {}
         mail = request.POST.get("mail")
         emails = (
             User.objects.filter(is_active=True)
@@ -67,12 +80,12 @@ def forgotpass(request):
             .values_list("email", flat=True)
         )
         if mail in emails:
-            forgot_pass_data["status"] = True
+            status = "We have sent Password Reset link to your email"
         else:
-            forgot_pass_data["status"] = False
-        return render(request, "resume_builder/forgotpass.html", forgot_pass_data)
+            status= "*Email is not registered."
+        return render(request, "resume_builder/forgotpass.html", {"status":status})
         print(emails)
-    return render(request, "resume_builder/forgotpass.html")
+    return render(request, "resume_builder/forgotpass.html",{"status":status})
 
 
 def loadindb(data):
