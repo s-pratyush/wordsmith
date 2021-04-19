@@ -23,6 +23,7 @@ class UserData(models.Model):
     skills=jsonfield.JSONField(null=True)
     edu=jsonfield.JSONField(null=True)
     exp=jsonfield.JSONField(null=True)
+    username=models.CharField(null=True,max_length=50)
     def __str__(self):
         return self.Email
 

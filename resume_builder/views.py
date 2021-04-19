@@ -54,8 +54,9 @@ def log_in(request):
             print("hurray logedd in :) \n")
             username = user.username
             django_login(request,user)
-            username=request.user.username
-            return render(request,"resume_builder/myprofile.html",{"username":username})
+            email=request.user.email
+            count=len(UserData.objects.filter(username=username))
+            return render(request,"resume_builder/myprofile.html",{"username":username,"email":email,"count":count})
         else:
             print("Paradon unable to login :( ")
     return render(request, "resume_builder/login.html")
@@ -67,7 +68,9 @@ def logout(request):
 
 def myprofile(request):
     username=request.user.username
-    return render(request,"resume_builder/myprofile.html",{"username":username})
+    email=request.user.email
+    count=len(UserData.objects.filter(username=username))
+    return render(request,"resume_builder/myprofile.html",{"username":username,"email":email,"count":count})
 
 
 def forgotpass(request):
@@ -88,7 +91,7 @@ def forgotpass(request):
     return render(request, "resume_builder/forgotpass.html",{"status":status})
 
 
-def loadindb(data):
+def loadindb(request,data):
     try:
         User = UserData()
         User.Email = data["Email"]
@@ -104,6 +107,7 @@ def loadindb(data):
         User.edu = data["Education"]
         User.exp = data["Experiance"]
         User.Objective = data["Objective"]
+        User.username=request.user.username
         User.save()
     except:
         print("There is an error in loading into database")
@@ -152,7 +156,7 @@ def form(request):
         for s in request.POST.get("skills").split(","):
             skillset.append(s)
         data["skills"] = skillset
-        loadindb(data)
+        loadindb(request,data)
         return render(request, "resume_builder/srt-resume.html", {"data": data})
     return render(request, "resume_builder/info.html")
 
