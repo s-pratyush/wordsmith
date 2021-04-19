@@ -35,7 +35,7 @@ def signup(request):
         )
         user.save()
         print("hello done !")
-        return render(request, "resume_builder/login.html")
+        return render(request, "resume_builder/index.html")
     return render(request, "resume_builder/sign_up.html")
 
 
