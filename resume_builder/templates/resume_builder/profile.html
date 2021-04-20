@@ -1,7 +1,0 @@
-{% if username %}
-Hi {{username}}
-<a href="{% url 'logout'%}">LOGOUT</a>
-{% else %}
-PLEASE LOGIN
-<a href="{% url 'login'%}">LOGIN</a>
-{% endif %}

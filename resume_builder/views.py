@@ -1,11 +1,12 @@
-from django.shortcuts import render
+from django.shortcuts import render , redirect
 from django.http import HttpResponse
 from django.template import loader
 from .models import Contacts
-from .models import UserData
+from .models import UserData,subscription
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login as django_login, logout as django_logout
 import json
+import razorpay
 
 
 def index(request):
@@ -34,8 +35,11 @@ def signup(request):
             request.POST.get("pass"),
         )
         user.save()
+        sub=subscription.objects.create(
+            user=user
+        )
         print("hello done !")
-        return render(request, "resume_builder/index.html")
+        return redirect('/login')
     return render(request, "resume_builder/sign_up.html")
 
 
@@ -43,7 +47,7 @@ def log_in(request):
     if request.user.is_authenticated:
         print("IS AUTHENTICATED")
         username=request.user.username
-        return render(request,"resume_builder/myprofile.html",{"username":username})
+        return redirect('/myprofile')
     else:
         print("sorry")
     if request.method == "POST":
@@ -56,7 +60,7 @@ def log_in(request):
             django_login(request,user)
             email=request.user.email
             count=len(UserData.objects.filter(username=username))
-            return render(request,"resume_builder/myprofile.html",{"username":username,"email":email,"count":count})
+            return redirect('/myprofile')
         else:
             print("Paradon unable to login :( ")
     return render(request, "resume_builder/login.html")
@@ -64,14 +68,41 @@ def log_in(request):
 
 def logout(request):
     django_logout(request)
-    return  log_in(request)
+    return  redirect('/login')
 
 def myprofile(request):
-    username=request.user.username
+    username = request.user.username
     email=request.user.email
     count=len(UserData.objects.filter(username=username))
+    sub=subscription.objects.filter(user=request.user).values()[0]['subscribed']
+    client = razorpay.Client(auth = ('rzp_test_d20UU7vPPDYgxU', 'apIp3rRDKlg0cSkqO9G9ffJ4'))
+    payment_order = client.order.create(dict(amount=100,currency='INR'))
+    order_id = payment_order['id']
+    order_status = payment_order['status']
+    if order_status == 'created':
+        payment_order['name']=username
+        payment_order['email']=email
+        return render(request,"resume_builder/myprofile.html",{"username":username,"email":email,"count":count,"payment":payment_order,"subscription":sub})
     return render(request,"resume_builder/myprofile.html",{"username":username,"email":email,"count":count})
 
+def payment_status(request):
+    response = request.POST
+    params_dict = {
+        'razorpay_order_id': response['razorpay_order_id'],
+        'razorpay_payment_id': response['razorpay_payment_id'],
+        'razorpay_signature': response['razorpay_signature']
+    }
+
+    # client instance
+    client = razorpay.Client(auth = ('rzp_test_d20UU7vPPDYgxU', 'apIp3rRDKlg0cSkqO9G9ffJ4'))
+
+    try:
+        status=False
+        status = client.utility.verify_payment_signature(params_dict)
+        subscription.objects.filter(user=request.user).update(subscribed=True)
+        return render(request, 'resume_builder/payment_status.html', {'status': True})
+    except:
+        return render(request, 'resume_builder/payment_status.html', {'status': False})
 
 def forgotpass(request):
     status=""
@@ -86,7 +117,6 @@ def forgotpass(request):
             status = "We have sent Password Reset link to your email"
         else:
             status= "*Email is not registered."
-        return render(request, "resume_builder/forgotpass.html", {"status":status})
         print(emails)
     return render(request, "resume_builder/forgotpass.html",{"status":status})
 
@@ -167,3 +197,4 @@ def cv_design(request):
 
 def resume(request):
     return render(request, "resume_builder/srt-resume.html", {"data": data})
+

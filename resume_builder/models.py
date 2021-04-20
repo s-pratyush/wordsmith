@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 import jsonfield
 class Contacts(models.Model):
     name=models.CharField(max_length=100)
@@ -7,6 +8,12 @@ class Contacts(models.Model):
     message=models.CharField(max_length=250)
     def __str__(self):
         return self.email
+
+class subscription(models.Model):
+    user=models.OneToOneField(User, on_delete=models.CASCADE)
+    subscribed=models.BooleanField(default=False)
+    def __str__(self):
+        return self.user.username
 
 class UserData(models.Model):
     F_name=models.CharField(max_length=100)
@@ -24,6 +31,7 @@ class UserData(models.Model):
     edu=jsonfield.JSONField(null=True)
     exp=jsonfield.JSONField(null=True)
     username=models.CharField(null=True,max_length=50)
+    payment_status=models.BooleanField(default=False)
     def __str__(self):
         return self.Email
 

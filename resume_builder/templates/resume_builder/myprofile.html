@@ -36,6 +36,25 @@
                 <h4>{{username}}</h4>
                 <p style="font-size: 20px;">{{email}}</p>
                 <p style="font-size: 20px;">Your total documents : {{count}}</p>
+                <p style="font-size: 20px;">subscription : {% if subscription %} Congratulations You are subscribed! {% else %} No Subscription{% endif %}</p>
+                {% if payment and not subscription%}
+            <form action="{% url 'payment_status' %}" method="POST">
+                {% csrf_token %}
+                <script
+                        src="https://checkout.razorpay.com/v1/checkout.js"
+                        data-key="rzp_test_d20UU7vPPDYgxU"
+                        data-amount="{{ payment.amount }}"
+                        data-currency="{{ payment.currency }}"
+                        data-order_id="{{ payment.id }}"
+                        data-buttontext="Subscribe Now"
+                        data-name="wordsmit trial subscription"
+                        data-prefill.name="{{ payment.name }}"
+                        data-prefill.email="{{payment.email}}"
+                        data-theme.color="#20c997"
+                ></script>
+                <input type="hidden" custom="Hidden Element" name="hidden">
+            </form>
+        {% endif %}
             </div>
         </div><!-- End: LinkedIn-like Profile Box -->
     </section>
@@ -53,6 +72,7 @@
                             <li class="list-inline-item"><a href="#"><span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x"></i><i class="fa fa-linkedin fa-stack-1x fa-inverse"></i></span></a></li>
                         </ul>
                         <p class="copyright text-muted text-center" style="color: rgb(250,251,252);background-color: rgb(44,62,80);filter: brightness(100%);">Copyright © Wordsmith&nbsp; 2020 | Developed&nbsp; By Pratyush Saxena</p>
+                    
                     </div>
                 </div>
             </div>

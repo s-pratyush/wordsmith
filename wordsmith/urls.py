@@ -1,5 +1,4 @@
 """wordsmith URL Configuration
-
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/3.0/topics/http/urls/
 Examples:
@@ -26,5 +25,6 @@ urlpatterns = [
     path('login/',v.log_in,name='login'),
     path('forgotpass',v.forgotpass,name='forgotpass'),
     path('signup',v.signup,name='signup'),
-    path('myprofile',v.myprofile,name="myprofile")
+    path('myprofile',v.myprofile,name="myprofile"),
+    path("payment_status",v.payment_status, name="payment_status"),
 ]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
