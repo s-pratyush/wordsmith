@@ -75,7 +75,7 @@ def myprofile(request):
     email=request.user.email
     count=len(UserData.objects.filter(username=username))
     sub=subscription.objects.filter(user=request.user).values()[0]['subscribed']
-    client = razorpay.Client(auth = ('rzp_test_d20UU7vPPDYgxU', 'apIp3rRDKlg0cSkqO9G9ffJ4'))
+    client = razorpay.Client(auth = ('rzp_live_uJkZ9eouyrDXGp', 'XBLo6M94xZMZqB82jhj0rrmh'))
     payment_order = client.order.create(dict(amount=100,currency='INR'))
     order_id = payment_order['id']
     order_status = payment_order['status']
@@ -94,7 +94,7 @@ def payment_status(request):
     }
 
     # client instance
-    client = razorpay.Client(auth = ('rzp_test_d20UU7vPPDYgxU', 'apIp3rRDKlg0cSkqO9G9ffJ4'))
+    client = razorpay.Client(auth = ('rzp_live_uJkZ9eouyrDXGp', 'XBLo6M94xZMZqB82jhj0rrmh'))
 
     try:
         status=False
